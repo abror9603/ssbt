@@ -36,6 +36,23 @@
     </div>
 
     <div class="form-group">
+        <label for="kasallik" class="form-label">Kasallik turi *</label>
+        <select 
+            id="kasallik" 
+            name="kasallik" 
+            class="form-select" 
+            required
+        >
+            <option value="hech_narsa" {{#if (eq patient.kasallik 'hech_narsa')}}selected{{/if}}>Hech narsa</option>
+            <option value="diabet" {{#if (eq patient.kasallik 'diabet')}}selected{{/if}}>Diabet</option>
+            <option value="gipertenziya" {{#if (eq patient.kasallik 'gipertenziya')}}selected{{/if}}>Gipertenziya</option>
+            <option value="astma" {{#if (eq patient.kasallik 'astma')}}selected{{/if}}>Astma</option>
+            <option value="yurak_kasalligi" {{#if (eq patient.kasallik 'yurak_kasalligi')}}selected{{/if}}>Yurak kasalligi</option>
+        </select>
+        <span class="error-message" id="kasallikError"></span>
+    </div>
+
+    <div class="form-group">
         <label for="medical_history" class="form-label">Tibbiy tarix</label>
         <textarea 
             id="medical_history" 

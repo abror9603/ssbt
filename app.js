@@ -49,6 +49,10 @@ const hbs = exphbs.create({
         eq: function(a, b) {
             return a === b;
         },
+        // Conditional helper for if-else chains
+        or: function(a, b) {
+            return a || b;
+        },
         // Current year helper
         currentYear: function() {
             return new Date().getFullYear();
@@ -80,6 +84,14 @@ app.use('/appointments', require('./routes/views/appointments.view.route'))
 // Home route
 app.get('/', (req, res) => {
     res.redirect('/patients');
+});
+
+// Queries page
+app.get('/queries', (req, res) => {
+    res.render('queries', {
+        title: 'Batafsil so\'rovlar',
+        activePage: 'queries'
+    });
 });
 
 app.listen(port, () => {

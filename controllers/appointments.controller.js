@@ -1,4 +1,5 @@
 const appointments = require("../models/appointments.model");
+const patients = require("../models/patients.model");
 
 // @desc get all appointments
 // @route GET /api/v1/appointments
@@ -81,10 +82,25 @@ const deleteAppointment = async (req, res, next) => {
   }
 };
 
+// @desc Get appointments by doctor
+// @route GET /api/v1/appointments/queries/by-doctor/:doctorName
+// @access Public
+const getAppointmentsByDoctor = async (req, res, next) => {
+  try {
+    const { doctorName } = req.params;
+    const result = await patients.getAppointmentsByDoctor(doctorName);
+    res.status(200).json({ data: result, message: "Success" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+    next(error);
+  }
+};
+
 module.exports = {
   getAllAppointments,
   createAppointment,
   getOneAppointment,
   updateAppointment,
   deleteAppointment,
+  getAppointmentsByDoctor,
 };

@@ -8,6 +8,33 @@
 </div>
 
 <div class="container">
+    <!-- Filter Form -->
+    <div class="filter-section">
+        <form method="GET" action="/patients/search" class="filter-form">
+            <div class="filter-row">
+                <div class="form-group">
+                    <label for="kasallik" class="form-label">Kasallik turi</label>
+                    <select id="kasallik" name="kasallik" class="form-select">
+                        <option value="">Barchasi</option>
+                        <option value="hech_narsa">Hech narsa</option>
+                        <option value="diabet">Diabet</option>
+                        <option value="gipertenziya">Gipertenziya</option>
+                        <option value="astma">Astma</option>
+                        <option value="yurak_kasalligi">Yurak kasalligi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="medical_keyword" class="form-label">Tibbiy tarixda qidirish</label>
+                    <input type="text" id="medical_keyword" name="medical_keyword" class="form-input" placeholder="Kalit so'z...">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Qidirish</button>
+                    <a href="/patients" class="btn btn-secondary">Tozalash</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <div class="table-wrapper">
         <table class="data-table">
             <thead>
@@ -15,6 +42,7 @@
                     <th>ID</th>
                     <th>Ism</th>
                     <th>Yosh</th>
+                    <th>Kasallik</th>
                     <th>Telefon</th>
                     <th>Email</th>
                     <th>Manzil</th>
@@ -28,6 +56,17 @@
                         <td class="table-id">{{this.id}}</td>
                         <td class="table-name">{{this.name}}</td>
                         <td>{{this.age}}</td>
+                        <td>
+                            <span class="badge badge-kasallik">
+                                {{#if this.kasallik}}
+                                    {{#if (eq this.kasallik 'diabet')}}Diabet
+                                    {{else if (eq this.kasallik 'gipertenziya')}}Gipertenziya
+                                    {{else if (eq this.kasallik 'astma')}}Astma
+                                    {{else if (eq this.kasallik 'yurak_kasalligi')}}Yurak kasalligi
+                                    {{else}}Hech narsa{{/if}}
+                                {{else}}Hech narsa{{/if}}
+                            </span>
+                        </td>
                         <td>{{#if this.contact_info}}{{this.contact_info.phone}}{{else}}-{{/if}}</td>
                         <td>{{#if this.contact_info}}{{this.contact_info.email}}{{else}}-{{/if}}</td>
                         <td>{{#if this.contact_info}}{{this.contact_info.address}}{{else}}-{{/if}}</td>
@@ -39,7 +78,7 @@
                     {{/each}}
                 {{else}}
                     <tr>
-                        <td colspan="7" class="table-empty">Hozircha bemorlar mavjud emas</td>
+                        <td colspan="8" class="table-empty">Hozircha bemorlar mavjud emas</td>
                     </tr>
                 {{/if}}
             </tbody>

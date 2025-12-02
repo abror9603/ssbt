@@ -20,6 +20,35 @@ router.get('/', async (req, res) => {
     }
 });
 
+// @desc Search/filter patients
+// @route GET /patients/search
+router.get('/search', async (req, res) => {
+    try {
+        const { kasallik, medical_keyword } = req.query;
+        let patientsList = [];
+
+        if (kasallik) {
+            patientsList = await patients.getPatientsByKasallik(kasallik);
+        } else if (medical_keyword) {
+            patientsList = await patients.getPatientsByMedicalHistory(medical_keyword);
+        } else {
+            patientsList = await patients.getAllPatients();
+        }
+
+        res.render('patients/list', { 
+            title: 'Bemorlar',
+            activePage: 'patients',
+            patients: patientsList,
+            searchParams: { kasallik, medical_keyword }
+        });
+    } catch (error) {
+        res.render('error', { 
+            title: 'Xatolik',
+            message: error.message 
+        });
+    }
+});
+
 // @desc Get add patient page
 // @route GET /patients/add
 router.get('/add', (req, res) => {

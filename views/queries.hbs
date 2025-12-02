@@ -1,0 +1,129 @@
+<div class="page-header">
+    <div class="container">
+        <h1 class="page-title">Batafsil so'rovlar</h1>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Results Section -->
+    <div id="resultsSection" class="results-section" style="display: none;">
+        <div class="results-header">
+            <h2>Natijalar</h2>
+            <button onclick="closeResults()" class="btn btn-secondary">Yopish</button>
+        </div>
+        <div id="resultsContent" class="results-content"></div>
+    </div>
+
+    <div class="queries-section">
+        <div class="query-card">
+            <h3>1. Belgilangan sana oralig'ida barcha bemorlarni qabul qilish</h3>
+            <form method="GET" action="/api/v1/patients/queries/with-appointments" class="query-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Boshlang'ich sana</label>
+                        <input type="date" name="startDate" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tugash sanasi</label>
+                        <input type="date" name="endDate" class="form-input" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Qidirish</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="query-card">
+            <h3>2. Muayyan tibbiy holati bo'lgan bemorlar</h3>
+            <form method="GET" action="/api/v1/patients/queries/by-kasallik" class="query-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Kasallik turi</label>
+                        <select name="kasallik" class="form-select" required>
+                            <option value="diabet">Diabet</option>
+                            <option value="gipertenziya">Gipertenziya</option>
+                            <option value="astma">Astma</option>
+                            <option value="yurak_kasalligi">Yurak kasalligi</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Qidirish</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="query-card">
+            <h3>3. Muayyan shifokor uchun barcha uchrashuvlar</h3>
+            <form method="GET" action="/api/v1/appointments/queries/by-doctor" class="query-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Shifokor ismi</label>
+                        <input type="text" name="doctorName" class="form-input" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Qidirish</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="query-card">
+            <h3>4. Muayyan vaqt oralig'ida qabul qilinmagan bemorlar</h3>
+            <form method="GET" action="/api/v1/patients/queries/without-appointments" class="query-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Boshlang'ich sana</label>
+                        <input type="date" name="startDate" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tugash sanasi</label>
+                        <input type="date" name="endDate" class="form-input" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Qidirish</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="query-card">
+            <h3>5. Ikki sana o'rtasida rejalashtirilgan uchrashuvlar</h3>
+            <form method="GET" action="/api/v1/patients/queries/scheduled-appointments" class="query-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Boshlang'ich sana</label>
+                        <input type="date" name="startDate" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tugash sanasi</label>
+                        <input type="date" name="endDate" class="form-input" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Qidirish</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="query-card">
+            <h3>6. Tibbiy tarixida kasallik qayd etilgan bemorlar</h3>
+            <form method="GET" action="/api/v1/patients/queries/by-medical-history" class="query-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Kalit so'z (masalan: diabet, yurak)</label>
+                        <input type="text" name="keyword" class="form-input" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Qidirish</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="query-card">
+            <h3>7. So'nggi N oyda qabul qilinmagan bemorlar</h3>
+            <form method="GET" action="/api/v1/patients/queries/without-recent-appointments" class="query-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Oy soni (default: 6)</label>
+                        <input type="number" name="months" class="form-input" value="6" min="1" max="24">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Qidirish</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/js/queries.js"></script>
+<script src="/js/queries.js"></script>

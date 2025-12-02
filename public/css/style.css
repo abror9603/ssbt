@@ -117,6 +117,118 @@ body {
     box-shadow: var(--shadow-sm);
 }
 
+/* ===== Filter Section ===== */
+.filter-section {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 2rem;
+}
+
+.filter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.filter-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    align-items: end;
+}
+
+.badge-kasallik {
+    background-color: var(--medium-gray);
+    color: var(--dark-gray);
+    font-size: 0.75rem;
+}
+
+/* ===== Queries Section ===== */
+.queries-section {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.query-card {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+}
+
+.query-card h3 {
+    margin: 0 0 1rem 0;
+    color: var(--primary-blue);
+    font-size: 1.125rem;
+}
+
+.query-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    align-items: end;
+}
+
+/* ===== Results Section ===== */
+.results-section {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 2rem;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.results-header h2 {
+    margin: 0;
+    color: var(--primary-blue);
+    font-size: 1.5rem;
+}
+
+.results-info {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background-color: var(--light-gray);
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.results-content {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.loading {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-gray);
+    font-size: 1.125rem;
+}
+
+.alert-info {
+    background-color: #D1ECF1;
+    color: #0C5460;
+    border: 1px solid #BEE5EB;
+    padding: 1rem;
+    border-radius: 6px;
+}
+
 .page-header .container {
     display: flex;
     justify-content: space-between;
