@@ -1,0 +1,49 @@
+<div class="page-header">
+    <div class="container">
+        <h1 class="page-title">Bemorlar ro'yxati</h1>
+        <a href="/patients/add" class="btn btn-primary">
+            <span>+</span> Yangi bemor
+        </a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="table-wrapper">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ism</th>
+                    <th>Yosh</th>
+                    <th>Telefon</th>
+                    <th>Email</th>
+                    <th>Manzil</th>
+                    <th>Harakatlar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#if patients}}
+                    {{#each patients}}
+                    <tr>
+                        <td class="table-id">{{this.id}}</td>
+                        <td class="table-name">{{this.name}}</td>
+                        <td>{{this.age}}</td>
+                        <td>{{#if this.contact_info}}{{this.contact_info.phone}}{{else}}-{{/if}}</td>
+                        <td>{{#if this.contact_info}}{{this.contact_info.email}}{{else}}-{{/if}}</td>
+                        <td>{{#if this.contact_info}}{{this.contact_info.address}}{{else}}-{{/if}}</td>
+                        <td class="table-actions">
+                            <a href="/patients/edit/{{this.id}}" class="btn-action btn-edit">Tahrirlash</a>
+                            <a href="/patients/delete/{{this.id}}" class="btn-action btn-delete" onclick="return confirm('Bemor ma\'lumotlarini o\'chirishni tasdiqlaysizmi?')">O'chirish</a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                {{else}}
+                    <tr>
+                        <td colspan="7" class="table-empty">Hozircha bemorlar mavjud emas</td>
+                    </tr>
+                {{/if}}
+            </tbody>
+        </table>
+    </div>
+</div>
+

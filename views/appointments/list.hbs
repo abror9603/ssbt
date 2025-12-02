@@ -1,0 +1,49 @@
+<div class="page-header">
+    <div class="container">
+        <h1 class="page-title">Uchrashuvlar ro'yxati</h1>
+        <a href="/appointments/add" class="btn btn-primary">
+            <span>+</span> Yangi uchrashuv
+        </a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="table-wrapper">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Bemor</th>
+                    <th>Shifokor ismi</th>
+                    <th>Sana</th>
+                    <th>Status</th>
+                    <th>Harakatlar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#if appointments}}
+                    {{#each appointments}}
+                    <tr>
+                        <td class="table-name">{{#if this.patient_name}}{{this.patient_name}}{{else}}-{{/if}}</td>
+                        <td class="table-name">{{this.doctor_name}}</td>
+                        <td>{{formatDate this.tayinlash_sanasi}}</td>
+                        <td>
+                            <span class="badge badge-{{getStatusClass this.status}}">
+                                {{this.status}}
+                            </span>
+                        </td>
+                        <td class="table-actions">
+                            <a href="/appointments/edit/{{this.id}}" class="btn-action btn-edit">Tahrirlash</a>
+                            <a href="/appointments/delete/{{this.id}}" class="btn-action btn-delete" onclick="return confirm('Uchrashuvni o\'chirishni tasdiqlaysizmi?')">O'chirish</a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                {{else}}
+                    <tr>
+                        <td colspan="5" class="table-empty">Hozircha uchrashuvlar mavjud emas</td>
+                    </tr>
+                {{/if}}
+            </tbody>
+        </table>
+    </div>
+</div>
+

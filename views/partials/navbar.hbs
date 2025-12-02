@@ -1,0 +1,16 @@
+<nav class="navbar">
+    <div class="container">
+        <div class="navbar-brand">
+            <h1 class="brand-title">Klinika</h1>
+        </div>
+        <ul class="navbar-menu">
+            <li class="navbar-item">
+                <a href="/patients" class="navbar-link {{#if (eq activePage 'patients')}}active{{/if}}">Bemorlar</a>
+            </li>
+            <li class="navbar-item">
+                <a href="/appointments" class="navbar-link {{#if (eq activePage 'appointments')}}active{{/if}}">Uchrashuvlar</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+

@@ -1,0 +1,77 @@
+<form method="POST" action="{{#if isEdit}}/appointments/{{appointment.id}}{{else}}/appointments{{/if}}" class="form" id="appointmentForm">
+    {{#if error}}
+    <div class="alert alert-error">
+        {{error}}
+    </div>
+    {{/if}}
+
+    <div class="form-group">
+        <label for="patients_id" class="form-label">Bemor *</label>
+        <select 
+            id="patients_id" 
+            name="patients_id" 
+            class="form-select" 
+            required
+        >
+            <option value="">Bemorni tanlang</option>
+            {{#if patients}}
+                {{#each patients}}
+                    <option value="{{this.id}}" {{#if (eq this.id ../appointment.patients_id)}}selected{{/if}}>
+                        {{this.name}} ({{#if this.contact_info}}{{this.contact_info.phone}}{{/if}})
+                    </option>
+                {{/each}}
+            {{/if}}
+        </select>
+        <span class="error-message" id="patientsIdError"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="doctor_name" class="form-label">Shifokor ismi *</label>
+        <input 
+            type="text" 
+            id="doctor_name" 
+            name="doctor_name" 
+            class="form-input" 
+            value="{{appointment.doctor_name}}" 
+            required
+            placeholder="Shifokor ism-sharifi"
+        >
+        <span class="error-message" id="doctorNameError"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="tayinlash_sanasi" class="form-label">Uchrashuv sanasi *</label>
+        <input 
+            type="datetime-local" 
+            id="tayinlash_sanasi" 
+            name="tayinlash_sanasi" 
+            class="form-input" 
+            value="{{#if appointment.tayinlash_sanasi}}{{formatDateTime appointment.tayinlash_sanasi}}{{/if}}" 
+            required
+        >
+        <span class="error-message" id="dateError"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="status" class="form-label">Status *</label>
+        <select 
+            id="status" 
+            name="status" 
+            class="form-select" 
+            required
+        >
+            <option value="rejalashtirilgan" {{#if (eq appointment.status 'rejalashtirilgan')}}selected{{/if}}>Rejalashtirilgan</option>
+            <option value="tugallangan" {{#if (eq appointment.status 'tugallangan')}}selected{{/if}}>Tugallangan</option>
+            <option value="bekor qilingan" {{#if (eq appointment.status 'bekor qilingan')}}selected{{/if}}>Bekor qilingan</option>
+        </select>
+        <span class="error-message" id="statusError"></span>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+            {{#if isEdit}}Saqlash{{else}}Qo'shish{{/if}}
+        </button>
+        <a href="/appointments" class="btn btn-secondary">Bekor qilish</a>
+    </div>
+</form>
+
